@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Robot Type="UXA-Torso" RootNode="Waist">
+
+	<RobotNode name="Waist">
+		<Visualization>
+			<File type="Inventor">model/waist.iv</File>
+		</Visualization>
+		<!-- \Todo Add CollisionModel -->
+		<!--Child name="LeftLeg"/-->
+		<Child name="RightLeg"/>
+		<Child name="Torso"/>
+	</RobotNode>
+
+
+    <!--*************************************** LEFT LEG ****************************************-->   
+    <!--RobotNode name="LeftLeg">
+        <ChildFromRobot>
+		    <File>UXA-LeftLeg.xml</File>
+		</ChildFromRobot>
+	</RobotNode-->
+
+
+    <!--*************************************** RIGHT LEG ****************************************-->   
+    	<RobotNode name="RightLeg">
+		<Transform>			
+			<matrix4x4>
+				<row1 c1="1" c2="0"  c3="0" c4="0"/>
+				<row2 c1="0" c2="1"  c3="0" c4="0"/>
+				<row3 c1="0" c2="0"  c3="1" c4="-42"/>
+				<row4 c1="0" c2="0"  c3="0" c4="1"/>
+			</matrix4x4>
+			<!--rollpitchyaw roll="0" pitch="0" yaw="-90" unitsAngle="degree"/-->
+			<!--Translation x="0" y="-57" z="65"/-->
+		</Transform>
+        	<ChildFromRobot>
+			<File>UXA-RightLeg.xml</File>
+		</ChildFromRobot>
+	</RobotNode>
+
+
+    <!--*************************************** Torso *****************************************-->
+	<RobotNode name="Torso">
+		<!--Visualization>
+			<File type="Inventor">model/upperBody.iv</File>
+		</Visualization-->		
+		
+		<!--Child name="Head"/-->
+		<Child name="Torso_Joint1"/>
+	</RobotNode>
+
+	<RobotNode name="Torso_Joint1">
+		<Joint type="revolute">
+			<!-- <DH theta="0" alpha="-90" a="0" d="27" unitsAngle="degree"/> -->
+			<Limits lo="-70" hi="70" unitsAngle="degree"/>						
+		</Joint>
+		<Child name="Torso_Body"/>
+	</RobotNode>
+
+	<RobotNode name="Torso_Body">
+		<Visualization>
+			<File type="Inventor">model/upperBody.iv</File>
+		</Visualization>
+		<Child name="Torso_Joint2"/>
+	</RobotNode>
+
+	<RobotNode name="Torso_Joint2">
+		<Joint type="fixed">
+			<!-- <DH theta="0" alpha="90" a="0" d="0" unitsAngle="degree"/> -->
+			<Limits lo="-10" hi="60" unitsAngle="degree"/>						
+		</Joint>
+		<Child name="TorsoCenter"/>
+	</RobotNode>
+
+	<RobotNode name="TorsoCenter">
+		<Visualization>
+			<CoordinateAxis type="Inventor" enable="true"/>
+		</Visualization>
+		
+		<!--Child name="LeftArm"/>
+		<Child name="RightArm"/-->
+	</RobotNode> 
+
+    <!--*************************************** Head *****************************************-->
+	<!-- \Todo Add UXA-Head.xml -->
+    	<!--RobotNode name="Head">
+        <ChildFromRobot>
+		    <File>UXA-Head.xml</File>
+		</ChildFromRobot>
+	</RobotNode-->
+	
+	
+    <!--*************************************** Left Arm *****************************************-->      
+    	<!-- \Todo Add UXA-LeftArm.xml -->
+	
+    <!--*************************************** Right Arm *****************************************-->      
+    	<!-- \Todo Add UXA-RightArm.xml -->
+
+</Robot>

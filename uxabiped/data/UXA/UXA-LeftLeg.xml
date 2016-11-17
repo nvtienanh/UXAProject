@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- UXA convex hull model, root node == LeftFootTCP -->
+
+<Robot Type="UXA" RootNode="LeftLeg_TCP">
+
+	<!--Node: LeftLeg_TCP-->
+	<RobotNode name="LeftLeg_TCP">
+		<Transform>			
+			<Translation x="0" y="0" z="0"/>
+		</Transform>	
+		<Child name="LeftLeg_BodyAnkle2"/>
+	</RobotNode>
+
+	<!--Node: LeftLeg_BodyAnkle2-->
+	<RobotNode name="LeftLeg_BodyAnkle2">		
+		<Visualization>
+			<File type="Inventor">model/Legs/leftLegAnkle2.iv</File>
+		</Visualization>
+		<Physics>
+			<Mass value="2" unit="kg"/>
+		</Physics>	
+		<Child name="LeftLeg_Joint6"/>	
+        	<Sensor name="LeftLeg_FootSensor" type="contact"/>
+	</RobotNode>
+	
+	<!--Node: LeftLeg_Joint6-->
+	<RobotNode name="LeftLeg_Joint6">				
+		<Joint type="revolute">			
+			<Limits unit="degree" lo="-24" hi="24"/>
+		</Joint>		
+		<Child name="LeftLeg_BodyAnkle1"/>
+        	<Sensor name="LeftLeg_AnkleSensorX" type="forcetorque"/>
+	</RobotNode>
+
+	<!--Node: LeftLeg_BodyAnkle1-->
+	<RobotNode name="LeftLeg_BodyAnkle1">
+		<Visualization enable="true">
+			<File type="Inventor">model/Legs/leftLegAnkle1.iv</File>
+		</Visualization>		
+        	<Physics>
+			<Mass value="3" unitsWeight="kg"/>
+			<!--IgnoreCollision name="LeftLeg_BodyAnkle2"/-->
+        	</Physics>	
+        	<Child name="LeftLeg_Joint5"/>
+	</RobotNode>
+
+	<!--Node name="LeftLeg_Joint5"/-->
+	<RobotNode name="LeftLeg_Joint5">		
+		<Transform>
+			<DH a="0" d="0" theta="0" alpha="-90" units="degree"/>
+		</Transform>
+		<Joint type="revolute">			
+			<Limits unit="degree" lo="-42" hi="21"/>
+		</Joint>		
+		<Child name="LeftLeg_BodyKnee"/>
+        	<Sensor name="LeftLeg_AnkleSensorY" type="forcetorque"/>
+	</RobotNode>
+
+	<RobotNode name="LeftLeg_BodyKnee">		
+		<Visualization enable="true">
+			<File type="Inventor">model/Legs/leftLowerLeg.iv</File>
+		</Visualization>
+		<Physics>
+			<Mass value="3" unit="kg"/>
+		</Physics>
+		<Child name="LeftLeg_Joint4"/>
+	</RobotNode>
+
+	<!--Node name="LeftLeg_Joint4"/-->
+	<RobotNode name="LeftLeg_Joint4">
+		<Transform>
+			<DH a="-210" d="0" theta="0" alpha="0" units="degree"/>
+		</Transform>
+		<Joint type="revolute">
+			<Limits unit="degree" lo="-125" hi="0"/>
+		</Joint>
+		<Child name="LeftLeg_BodyHip3"/>
+	</RobotNode>
+
+	<RobotNode name="LeftLeg_BodyHip3">
+		<!-- \Todo: add Physics info -->
+		<Physics>
+			<Mass value="3" unit="kg"/>
+		</Physics>
+		<Visualization enable="true">
+			<File type="Inventor">model/Legs/leftUpperLeg.iv</File>
+		</Visualization>	
+		<!-- Todo: add CollisionModel -->
+		<Child name="LeftLeg_Joint3"/>
+	</RobotNode> 
+
+	<!--Node name="LeftLeg_Joint3"/-->
+	<RobotNode name="LeftLeg_Joint3">
+		<Transform>
+			<DH a="-210" d="0" theta="0" alpha="0" units="degree"/>
+		</Transform>
+		<Joint type="revolute">			
+			<Limits unit="degree" lo="-79" hi="79"/>
+		</Joint>
+
+		<Child name="LeftLeg_BodyHip2"/>
+		<Child name="LeftLeg_KneeTCP"/>
+	</RobotNode>
+
+	<RobotNode name="LeftLeg_KneeTCP">		
+		<Joint type="fixed">
+			<!-- <DH theta="0" alpha="0" a="0" d="-93.5136"/> -->
+		</Joint>
+	</RobotNode>
+
+	<RobotNode name="LeftLeg_BodyHip2">
+		<!-- \Todo: add Physics info -->
+ 		<Visualization enable="true">
+			<File type="Inventor">model/Legs/leftLegThigh.iv</File>
+		</Visualization>
+		<!-- Todo: add CollisionModel -->
+		<Child name="LeftLeg_Joint2"/>
+	</RobotNode>
+
+	<!--Node name="LeftLeg_Joint2"/-->
+	<RobotNode name="LeftLeg_Joint2">
+		<Transform>
+			<DH a="0" d="0" theta="0" alpha="-90" units="degree"/>
+		</Transform>
+		<Joint type="revolute">			
+			<Limits unit="degree" lo="-119" hi="17"/>
+		</Joint>		
+		<Child name="LeftLeg_BodyHip1"/>
+	</RobotNode>
+
+	<RobotNode name="LeftLeg_BodyHip1">
+		<Visualization enable="true">
+			<File type="Inventor">model/Legs/leftLeg_pelvis.iv</File>
+		</Visualization>
+		<!-- Todo: add CollisionModel -->
+		<!-- \Todo: add Physics info -->
+		<Child name="LeftLeg_Joint1"/>
+	</RobotNode> 
+
+	<!--Node name="LeftLeg_Joint1"/-->
+	<RobotNode name="LeftLeg_Joint1">
+		<Transform>
+			<DH a="0" d="0" theta="-90" alpha="90" units="degree"/>
+		</Transform>
+		<Joint type="revolute">			
+			<Limits unit="degree" lo="-44" hi="132"/>
+		</Joint>
+		
+		<Child name="LeftLeg_BodyHip0"/>
+	</RobotNode>
+
+	<RobotNode name="LeftLeg_BodyHip0">
+		<Transform>
+			<!--DH alpha="144.74" a="0" d="0" unitsAngle="degree"/-->
+		</Transform>
+		<!-- virtual body    -->   
+		<Child name="LeftLeg_Base"/>
+	</RobotNode>
+
+	<RobotNode name="LeftLeg_Base">
+	    	<Transform>
+			<DH a="57" d="42" theta="0" alpha="0" units="degree"/>
+		</Transform>
+
+		<Visualization enable="true">
+			<CoordinateAxis  type="Inventor" enable="false" scaling="1"/>
+		</Visualization>
+
+	</RobotNode>
+
+	
+    <!--*************************************** RobotNodeSets/KinematicChains *****************************************-->      
+
+ 	<RobotNodeSet name="LeftLeg" kinematicRoot="LeftLeg_Base" tcp="LeftLeg_TCP">
+		<Node name="LeftLeg_Joint1"/>
+		<Node name="LeftLeg_Joint2"/>
+		<Node name="LeftLeg_Joint3"/>
+		<Node name="LeftLeg_Joint4"/>
+		<Node name="LeftLeg_Joint5"/>
+		<Node name="LeftLeg_Joint6"/>
+	</RobotNodeSet>
+
+</Robot>
